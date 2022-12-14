@@ -23,8 +23,25 @@
   border-radius: 1rem;
 
 }
-.info button:hover{
+ .info button:hover{
 color: yellow;
 cursor: pointer;
-
+}
+.emp button{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1rem;
+  width: 90px;
+  height: 2rem;
+  /* width: 100%; */
+  background-color: green;
+  color: white;
+  border-radius: 1rem;
+  margin-left: 43.3rem;
+  padding-top: .5rem;
+}
+.emp button:hover{
+  color: yellow;
+cursor: pointer;
 }

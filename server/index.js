@@ -33,6 +33,19 @@ app.post("/create", (req, res) => {
     }
   );
 });
+app.get("/emp",(req,res)=>{
+  db.query("SELECT * FROM emp",
+  (err,result)=>{
+    if(err){
+      console.log(err)
+    }
+    else{
+      res.send(result)
+    }
+  }
+  
+  )
+})
 
 app.listen(3001, () => {
   console.log("port is working");
