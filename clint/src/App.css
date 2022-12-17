@@ -28,9 +28,9 @@ color: yellow;
 cursor: pointer;
 }
 .emp button{
-  display: flex;
+  /* display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: center; */
   margin-top: 1rem;
   width: 90px;
   height: 2rem;
@@ -38,10 +38,38 @@ cursor: pointer;
   background-color: green;
   color: white;
   border-radius: 1rem;
-  margin-left: 43.3rem;
+  /* margin-left: 43.3rem; */
   padding-top: .5rem;
 }
 .emp button:hover{
   color: yellow;
 cursor: pointer;
+}
+
+.details{
+  /* display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* width: 100px;
+  height: 400px; */
+ /* width: 100px;
+ height: 25px;
+ border: 1px solid black;  */ 
+ width: 700px;
+ width: 600px;
+ border: 1px solid ;
+ background-color: lightgray;
+ margin: 5px;
+ display: flex;
+ padding: 10px;
+}
+.emp{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.details h4{
+  margin: 20px;
+  font-family: 'Courier New', Courier, monospace;
+  
 }

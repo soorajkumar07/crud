@@ -2,6 +2,7 @@
 import { useState } from "react";
 import "./App.css";
 import axios from "axios";
+// import { Axios } from 'axios';
 
 function App() {
   const [Facname, setName] = useState("");
@@ -9,7 +10,8 @@ function App() {
   const [Location, setLocation] = useState("");
   const [Countary, setCountary] = useState("");
   const [Salary, setSalary] = useState(0);
-  let [emplist,setEmp]=useState([])
+  let [emplist, setEmp] = useState([]);
+  let [newSalary, setnewSalary] = useState(0);
   // const Dispinfo =()=>{
   //   console.log(Facname+Age+Location+Country+
   //     Salary)
@@ -23,24 +25,44 @@ function App() {
         age: Age,
         location: Location,
         countary: Countary,
+        Salary: Salary,
+      })
+      .then(() => {
+        // console.log("sucess");
+        setEmp([...emplist,{
+           name: Facname,
+        age: Age,
+        location: Location,
+        countary: Countary,
         salary: Salary,
-      })
-      .then((err) => {
-        console.log(err);
-      })
-      .catch((res) => {
-        console.log(res);
+        }])
+        // console.log(err);
       });
+
+    // .catch((res) => {
+    //   console.log(res);
+    // });
   };
 
-   const getemp=()=>{
-    axios.get("http://localhost:3001/emp").then((Response=>{
-      console.log(Response)
-    }))
-      
-    }
-  
-
+  const getemp = () => {
+    axios.get("http://localhost:3001/emp").then((Response) => {
+      // console.log(Response)
+      setEmp(Response.data);
+    });
+  };
+  const update = (facid) => {
+    axios
+      .put("http://localhost:3001/update", {
+        Salary: newSalary,
+        facid: facid,
+      })
+      .then((Response) => {
+        alert("updated");
+        console.log(Response);
+      })
+      // .catch(err=>console.log(err));
+      // console.log(newSalary);
+  };
 
   return (
     <div className="App">
@@ -87,8 +109,43 @@ function App() {
       </div>
       <div className="emp">
         <button onClick={getemp}> table of emp</button>
+
+        {emplist.map((val) => {
+          // return <div>{val.facName}</div>
+          return (
+            <div className="details" key={val.facid}>
+              <div>
+                <h4 key={val.facid}>Name: {val.facName}</h4>
+
+                <h4 key={val.Age}>Age: {val.Age}</h4>
+
+                <h4 key={val.Location}>Location: {val.Location}</h4>
+
+                <h4 key={val.Countary}>Countary: {val.Countary}</h4>
+
+                <h4 key={val.Salary}>Salary: {val.Salary}</h4>
+              </div>
+              <div>
+                <input
+                  type="text"
+                  placeholder="500"
+                  onChange={(event) => {
+                    setnewSalary(event.target.value);
+                  }}
+                />
+                <button
+                  onClick={() => {
+                    update(val.facid);
+                  }}
+                >
+                  UPDATE
+                </button>
+              </div>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
- }       
+}
 export default App;
